@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+@using Blog.UIL.Web.Models
+
+@model LoginModel
+
+<div class="col-sm-8 container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">login</div>
+
+        <div class="card-body">
+
+            <div class="text-danger">@ViewBag.FormResult</div>
+
+            @using (Html.BeginForm())
+             {
+              @Html.AntiForgeryToken()
+
+              <div class="form-group">
+              <label>username</label>
+              @Html.TextBoxFor(x => x.UserName, new { @type = "UserName", @class = "form-control" })
+              @Html.ValidationMessageFor(x => x.UserName)
+
+              </div>
+              <div class="form-group">
+              <label>password</label>
+              @Html.TextBoxFor(x => x.Password, new { @type = "password", @class = "form-control"  })
+              @Html.ValidationMessageFor(x => x.Password)
+              </div>
+
+              <input type="submit" class="btn btn-primary btn-block" name="name" value="login" />
+
+             }
+
+          
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+

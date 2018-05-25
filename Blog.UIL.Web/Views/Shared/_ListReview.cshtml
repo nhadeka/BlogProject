@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<script src="~/Content/site/style/js/jquery.min.js"></script>
+
+@using Blog.Entity.Entities
+@model IEnumerable<Review>
+
+    @helper AdjustContent(string text)
+    {
+        if (text.Length > 300)
+        {
+            <p>@text.Substring(0, 300)</p>
+        }
+        else
+        {
+            @text
+        }
+    }
+            <div class="blog-posts col-blog">
+                @foreach (Review item in Model)
+    {
+            <div class="post row">
+                <div class="col-sm-4">
+                    <figure>
+                        <a href="/Reviews/Detail/@item.Id">
+                            <div class="text-overlay">
+                                <div class="info"><span>read more...</span></div>
+                            </div>
+                            <img src="@item.Picture.MdPic" alt="" />
+                        </a>
+                    </figure>
+                </div>
+                <div class="col-sm-8 post-content">
+                    <div class="meta">
+                        <span class="date">@item.AdditionDate.ToShortDateString()</span>
+
+
+                    </div>
+                    <h2 class="post-title"><a href="/reviews/detail/@item.Id">@item.Title</a></h2>
+                    <p>@AdjustContent(item.Content)</p>
+                    <a href="/Reviews/Detail/@item.Id">
+                        <div class="info"><span>read more...</span></div>
+                    </a>
+                </div>
+            </div>
+}
+
+                @*<div class="pagination">
+                    <ul>
+                        <li><a href="#" class="btn">Prev</a></li>
+                        <li class="active"><a href="#" class="btn"><span>1</span></a></li>
+                        <li><a href="#" class="btn"><span>2</span></a></li>
+                        <li><a href="#" class="btn"><span>3</span></a></li>
+                        <li><a href="#" class="btn">Next</a></li>
+                    </ul>
+                </div>*@
+                <!-- /.pagination -->
+            </div>

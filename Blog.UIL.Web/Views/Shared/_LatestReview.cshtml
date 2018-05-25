@@ -1,0 +1,25 @@
+﻿@using Blog.Entity.Entities
+@model IEnumerable<Review>
+
+<div class="sidebox widget">
+    <h3 class="widget-title section-title">latest posts</h3>
+    <ul class="post-list">
+        @foreach (Review item in Model)
+        {
+            <li>
+                <div class="icon-overlay"> <a href="/reviews/detail/@item.Id"><img src="@item.Picture.SmPic" alt="" /> </a> </div>
+                <div class="meta">
+                    <h5><a href="/reviews/detail/@item.Id">@item.Title</a></h5>
+                    <em>@item.AdditionDate.ToShortDateString() 
+                   
+                    </em>
+                </div>
+            </li>
+
+        }
+
+
+
+    </ul>
+    <!-- /.post-list -->
+</div>

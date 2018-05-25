@@ -1,0 +1,17 @@
+﻿@using Blog.Entity.Entities
+@model IEnumerable<Genre>
+
+<div class="sidebox widget">
+
+    <ul class="circled">
+     
+
+        @foreach (Genre item in Model)
+    {
+
+        <li><a href="/Genres/Index/@item.Id">@item.Name </a></li>
+    }
+
+
+    </ul>
+</div>

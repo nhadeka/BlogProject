@@ -1,0 +1,73 @@
+﻿@using Blog.Entity.Entities
+@{
+    ViewBag.Title = "genres";
+}
+@model IEnumerable<Genre>
+@helper AdjustContent(string text)
+    {
+if (text.Length > 300)
+{
+            <p>@text.Substring(0, 300)</p>
+}
+else
+{
+            @text
+    }
+}
+        <section class="panel">
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            @Html.ActionLink("add genre", "add", "genre", new { area = "Admin" }, new { @class = "  btn btn-success btn-sm " })
+
+                        </div>
+
+                    </div>
+                    <div class="space15"></div>
+                    <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                        <thead>
+                            <tr>
+                                <th class="text-center">genre</th>
+                                <th class="text-center">description</th>
+
+                                <th class="text-center">manage</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (Genre item in Model)
+                            {
+                            <tr>
+
+                                <td class="text-center">@item.Name</td>
+                                <td>@AdjustContent(item.Description)</td>
+                               
+
+
+                                <td class="text-center">
+
+
+                                    <a class="btn btn-primary btn-sm" href="/admin/genre/edit/@item.Id">
+                                        edit
+                                        <i class="icon-pencil"></i>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/admin/genre/delete/@item.Id">
+                                        delete
+                                        <i class="icon-trash "></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            }
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>

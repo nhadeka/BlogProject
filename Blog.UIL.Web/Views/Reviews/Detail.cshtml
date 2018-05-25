@@ -1,0 +1,27 @@
+﻿@using Blog.Entity.Entities
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@model Review
+
+<div class="blog-posts classic-blog single">
+    <div class="post format-image">
+        <div class="meta">
+            <span class="date">@Model.AdditionDate.ToShortDateString()</span>
+            <span class="genres"><a href="/genres/index/@Model.GenreId">@Model.Genre.Name</a></span>
+            
+        </div>
+        <h1  class="post-title text-center" >@Model.Title</h1>
+        <div class="center">
+            <img src="@Model.Picture.LgPic" alt=""  class="center-block"/>
+        </div>
+        <div class="post-content">
+
+            <p>@Model.Content</p>
+
+        </div>
+    </div>
+   
+</div>
+

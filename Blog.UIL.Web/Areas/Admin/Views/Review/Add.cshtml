@@ -1,0 +1,90 @@
+﻿@using Blog.Entity.Entities
+@{
+    ViewBag.Title = "ReviewAdd";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Head{
+
+    <link rel="stylesheet" type="text/css" href="~/content/admin/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="~/content/admin/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="~/content/admin/assets/bootstrap-colorpicker/css/colorpicker.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="~/content/admin/assets/jquery-multi-select/css/multi-select.css" />
+ 
+}
+
+@model Review
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+               
+                <div class="panel-body">
+                   
+                    @using (Html.BeginForm("Add", "review", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.ValidationSummary(false)
+                        @Html.AntiForgeryToken()
+                     
+                          
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label">title</label>
+                   
+                        <div class="col-lg-10">
+                            <span class="text-danger">@Html.ValidationMessageFor(x => x.Title)</span>
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "title" })
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">genre</label>
+                            <div class="col-lg-10">
+                 
+                                @Html.DropDownListFor(x => x.GenreId, new SelectList(ViewBag.Genres, "Id", "Name"), new { @class = "form-control", @placeholder = "content" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">content</label>
+                            <div class="col-lg-10">
+                                <span class="text-danger">@Html.ValidationMessageFor(x => x.Content)</span>
+                                @Html.TextAreaFor(x => x.Content, new { @class = "form-control", @placeholder = "content" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">image</label>
+                            <div class="col-lg-10">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <span class="btn btn-white btn-file">
+                                        <span class="fileupload-new"><i class="icon-paper-clip"></i>select file</span>
+                                       
+                                        
+                                        <input type="file" class="default" name="image" />
+                                    </span>
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-primary" type="submit" name="name" value=" Kaydet" />
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+

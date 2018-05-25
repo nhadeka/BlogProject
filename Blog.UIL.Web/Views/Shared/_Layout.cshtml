@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="~/Content/site/style/images/favicon.png">
+    <title>Blog-@ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/Content/site/style/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site/style/css/plugins.css" rel="stylesheet">
+    <link href="~/Content/site/style.css" rel="stylesheet">
+    <link href="~/Content/site/style/css/color/red.css" rel="stylesheet">
+    <link href="~/Content/site/style/type/bebas.css" rel="stylesheet">
+    <link href="~/Content/site/style/type/fontello.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+          <script src="style/js/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+          <![endif]-->
+    @RenderSection("Head", false)
+</head>
+<body>
+    <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+    <div class="body-wrapper">
+        <div class="navbar default">
+            <div class="navbar-header">
+                <div class="container">
+                    <div class="basic-wrapper">
+                        <a class="btn responsive-menu pull-right" data-toggle="collapse" data-target=".navbar-collapse"><i></i></a>
+                        <div class="navbar-brand"><a href="index.html"><img src="~/Content/site/style/images/logo.png" alt="" data-src="~/Content/site/style/images/logo.png" data-ret="/site/style/images/logo@2x.png" class="retina" /></a></div>
+                    </div>
+                    <nav class="collapse navbar-collapse pull-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/home/index">home</a></li>
+
+
+                            <li class="current dropdown">
+                                <a href="#" class="dropdown-toggle js-activated">genres</a>
+                                <ul class="dropdown-menu">
+
+                                    @{
+                                       Html.RenderAction("_listgenre", "genres");
+                                    }
+
+                                </ul>
+                            </li>
+
+                            @if (User.Identity.IsAuthenticated)
+                             {
+
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                               
+                                <span class="username">@User.Identity.Name</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                <div class="log-arrow-up"></div>
+
+                                <li><a href="/accounts/logout"><i class="icon-key"></i>log out</a></li>
+                            </ul>
+                        </li>
+
+                            }
+                           else
+                            {
+                        <li><a href="/accounts/login">Login</a></li>
+                        @*<li><a href="/accounts/register">register</a></li>*@
+                            }
+
+                            <li class="dropdown social-dropdown pull-right">
+                                <div class="share btn btn-default dropdown-toggle" data-toggle="dropdown"><i class="icon-heart-1"></i></div>
+                                <ul class="button-group dropdown-menu dropdown-menu-right share-links">
+                                    <li><a href="https://tr-tr.facebook.com/" class="btn"><i class="icon-s-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/" class="btn"><i class="icon-s-twitter"></i></a></li>
+                                    <li><a href="https://tr.pinterest.com/" class="btn"><i class="icon-s-pinterest"></i></a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                        <!--/.navbar-nav -->
+                    </nav>
+                    <!--/.nav-collapse -->
+                </div>
+                <!--/.container -->
+            </div>
+            <!--/.navbar-header -->
+        </div>
+        <!--/.navbar -->
+        <div class="offset"></div>
+        <div class="dark-wrapper page-title">
+            <div class="container inner">
+                <h1>reviews </h1>
+            </div>
+            <!--/.container -->
+        </div>
+        <!--/.page-title -->
+
+        <div class="container inner">
+            <div class="row">
+
+                <div class="col-sm-8 content">
+                  
+                    @RenderBody()
+                </div>
+
+                <!-- /.content -->
+                <aside class="col-sm-4 sidebar lp30">
+                    
+                    @{
+                      Html.RenderAction("_LatestReview", "Home");
+                    }
+                 
+                  
+                    <br />
+
+                     <div>
+                        <h3 class="widget-title section-title">genres</h3>
+                        @{
+
+                         Html.RenderAction("_ListGenre", "Genres");
+                        }
+                    </div>
+                    <!-- /.widget -->
+                   
+                </aside>
+                <!-- /.col-sm-4 .sidebar -->
+            </div>
+
+            <!-- /.row -->
+        </div>
+        <!--/.container -->
+        <footer class="footer black-wrapper">
+         
+                
+            </footer>
+        <!-- /footer -->
+    </div>
+    <!--/.body-wrapper -->
+    <script src="~/Content/site/style/js/jquery.min.js"></script>
+    <script src="~/Content/site/style/js/bootstrap.min.js"></script>
+    <script src="~/Content/site/style/js/plugins.js"></script>
+    <script src="~/Content/site/style/js/scripts.js"></script>
+</body>
+</html>

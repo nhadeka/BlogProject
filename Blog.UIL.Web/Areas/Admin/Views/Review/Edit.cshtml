@@ -1,0 +1,65 @@
+﻿@using Blog.Entity.Entities
+@{
+    ViewBag.Title = "ReviewEdit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model Review
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">add</header>
+                <div class="panel-body">
+                    @*<div class="col-md-6 col-md-offset-3">*@
+                    @using (Html.BeginForm("edit", "review", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.ValidationSummary(false)
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.PictureId)
+                       
+
+                       
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">title</label>
+
+                            <div class="col-lg-10">
+                                <span class="text-danger">@Html.ValidationMessageFor(x => x.Title)</span>
+                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">genre</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownListFor(x => x.GenreId, new SelectList(ViewBag.Genres, "Id", "Name"), new { @class = "form-control" })
+                                @Html.HiddenFor(x => x.GenreId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">content</label>
+                            <div class="col-lg-10">
+                                <span class="text-danger">@Html.ValidationMessageFor(x => x.Content)</span>
+                                @Html.TextAreaFor(x => x.Content, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input class="btn btn-primary" type="submit" name="name" value="save" />
+                        </div>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+
+
