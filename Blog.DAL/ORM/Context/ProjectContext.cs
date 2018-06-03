@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace Blog.DAL.ORM.Context
 {
-    //entitiy framework ile dbcontext ten kalıtım alarak projectcontext oluşturduk ki dbcontext teki ihtiyacımız olan metodları-zira bunlar her context in ihtiyacı olan ortak metodlardır- kullanabilelim.
+    
     public class ProjectContext : DbContext
     {
         public ProjectContext() : base("ConnDb")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ProjectContext>());
         }
-        //tabloları sql de oluşturalım.
+        
        
         public DbSet<Picture> Picture { get; set; }
         public DbSet<Review> BookReview { get; set; }
@@ -28,10 +28,10 @@ namespace Blog.DAL.ORM.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // isimlerin tekil kalmasını sağlamak için kullandığımız kod.
+            
             modelBuilder.Conventions.Add(new PluralizingTableNameConvention());
 
-            //mappingleri sql de oluşturalım.
+            
            
             modelBuilder.Configurations.Add(new PictureMap());
             modelBuilder.Configurations.Add(new ReviewMap());
